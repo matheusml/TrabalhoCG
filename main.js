@@ -13,7 +13,10 @@ function start() {
     gl.depthFunc(gl.LEQUAL);                                // Near things obscure far things
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Clear the color as well as the depth buffer.
   }
+
+  initModel();
 }
+
 function initWebGL(canvas) {
   gl = null;
   
@@ -29,4 +32,9 @@ function initWebGL(canvas) {
     gl = null;
   }
    return gl;
-} 
+}
+
+function initModel(){
+  var v = vertices;
+  var p = polygons;
+}
