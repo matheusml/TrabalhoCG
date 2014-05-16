@@ -1,4 +1,5 @@
-var polygons=[
+//deletar os 4
+var polygonsArray=[
  4,1,18,17,0
 ,4,2,19,18,1
 ,4,3,20,19,2

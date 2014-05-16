@@ -3,18 +3,18 @@ var gl; // A global variable for the WebGL context
 function start() {
   var canvas = document.getElementById("glcanvas");
 
-  gl = initWebGL(canvas);      // Initialize the GL context
-  
-  // Only continue if WebGL is available and working
+  gl = initWebGL(canvas);
   
   if (gl) {
+    initBuffers();
+
+    
     gl.clearColor(0.0, 0.0, 0.0, 1.0);                      // Set clear color to black, fully opaque
     gl.enable(gl.DEPTH_TEST);                               // Enable depth testing
     gl.depthFunc(gl.LEQUAL);                                // Near things obscure far things
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Clear the color as well as the depth buffer.
+    
   }
-
-  initModel();
 }
 
 function initWebGL(canvas) {
@@ -34,7 +34,15 @@ function initWebGL(canvas) {
    return gl;
 }
 
-function initModel(){
-  var v = vertices;
-  var p = polygons;
+function initBuffers() {
+  var vertices = verticesArray;
+  var poligons = polygonsArray;
+
+  verticesBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, verticesBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+  polygonBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, polygonBuffer);
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(poligons), gl.STATIC_DRAW);
 }
